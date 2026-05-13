@@ -12,8 +12,8 @@ export const ProjectsSection: React.FC = () => {
       <div className="pointer-events-none relative z-5 mix-blend-exclusion">
         <h2
           className={clsx(
-            "inline-block max-w-full font-normal tracking-tighter whitespace-normal text-white subpixel-antialiased",
-            "text-[clamp(1.7rem,8vw,2.2rem)] leading-[1.08] sm:text-4xl sm:leading-none md:whitespace-nowrap md:text-5xl md:leading-13 lg:text-6xl lg:leading-15",
+            "inline-block max-w-full font-light tracking-tighter whitespace-normal text-white subpixel-antialiased",
+            "text-[clamp(1.7rem,8vw,2.2rem)] leading-[1.08] sm:text-3xl sm:leading-none md:whitespace-nowrap md:text-4xl md:leading-13 lg:text-6xl lg:leading-15",
           )}
         >
           <span className="text-white/75">Latest</span>

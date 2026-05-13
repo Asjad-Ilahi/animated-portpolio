@@ -13,7 +13,7 @@ export const TopBarV2: React.FC = () => {
         <div className="relative z-10 flex w-full flex-col items-stretch sm:w-auto">
           <MobileNavBackdrop />
           {/* overflow-hidden only wraps the pill row so the mobile drawer is not clipped */}
-          <div className="relative z-10 overflow-hidden rounded-full border border-white/50 bg-white/55 shadow-[0_10px_30px_rgba(0,0,0,0.09)] backdrop-blur-xl">
+          <div className="mobile-nav-pill relative z-10 overflow-hidden rounded-full border border-white/50 bg-white/55 shadow-[0_10px_30px_rgba(0,0,0,0.09)] backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300 ease-out">
             <div className="relative">
               <div className="pointer-events-none absolute inset-x-1 top-1 h-1/2 rounded-full" />
               <div className="flex items-center gap-4 px-4 py-3 md:gap-6 md:px-5 md:py-2.5">

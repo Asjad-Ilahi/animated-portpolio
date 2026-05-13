@@ -48,10 +48,10 @@ const techStack: TechItem[] = [
 ]
 
 const clientAvatarSrc = [
-  "/avatars/person1.jfif",
-  "/avatars/person2.jfif",
-  "/avatars/person3.jfif",
-  "/avatars/person4.jfif",
+  "/avatars/person1.jpg",
+  "/avatars/person2.jpg",
+  "/avatars/person3.jpg",
+  "/avatars/person4.jpg",
 ] as const
 
 export const TechSliderSection: React.FC = () => {
