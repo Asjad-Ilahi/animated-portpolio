@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+out
+.git
+.vscode
+.venv
+*.mdx
+.husky
+bespoke-hero.html
+/playwright-report/
