@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@source not "../public/bespoke-hero.html";
 
 @custom-variant reveal-false ([data-reveal="false"] &);
 
@@ -15,6 +14,12 @@
 
 html {
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: #0f172a;
+  color: #fff;
 }
 
 @theme inline {
@@ -24,7 +29,8 @@ html {
   --breakpoint-xs: 30rem;
   --breakpoint-xxs: 24rem;
   --breakpoint-custom: 75.5rem;
-  --font-switzer: var(--font-switzer);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --color-gray-500: #828282;
   --color-gray-200: #dedede;
   --tw-border-style: 1px solid #fff;

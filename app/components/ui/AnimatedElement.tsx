@@ -1,6 +1,6 @@
 import { MotionProps } from "motion/react"
 import { ReactNode, ElementType } from "react"
-import { MotionDiv, MotionH1, MotionH2, MotionP, MotionSpan, MotionUl } from "@/app/utils/lazy-ui"
+import { MotionDiv, MotionH1, MotionH2, MotionLi, MotionP, MotionSpan, MotionUl } from "@/app/utils/lazy-ui"
 
 interface AnimatedElementProps<T extends ElementType> extends MotionProps {
   element: T
@@ -34,6 +34,7 @@ export const AnimatedElement = <T extends ElementType>({
     div: MotionDiv,
     span: MotionSpan,
     ul: MotionUl,
+    li: MotionLi,
   }[element as keyof typeof MotionTag] as ElementType
 
   const variants = {

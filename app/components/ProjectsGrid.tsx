@@ -32,48 +32,48 @@ export function ProjectsGrid({ className }: { className?: string }) {
   const md = isMobile && !isCompactPhone
 
   /**
-   * Per-card stack-to-grid tuning. Keyed by featured slug; values mirror the original
-   * four-corner layout so the bento / hero-stack animation stays identical.
+   * Per-card stack-to-grid tuning, keyed by grid position (top-left, top-right, bottom-left,
+   * bottom-right) so swapping featured projects keeps the bento / hero-stack animation identical.
    */
-  const OFFSET_TUNING: Record<string, Partial<HeroOffset>> = {
-    saazghar: {
+  const OFFSET_TUNING: Partial<HeroOffset>[] = [
+    {
       rot: 9,
       s: responsiveScale,
       dx: mx ? -95 : md ? -175 : 20,
       dy: mx ? -88 : md ? -112 : -40,
     },
-    hamrahihub: {
+    {
       rot: 12,
       s: responsiveScale,
       dx: mx ? -105 : md ? -185 : 0,
       dy: mx ? -82 : md ? -102 : -10,
     },
-    petlove: {
+    {
       rot: 5,
       s: responsiveScale,
       dx: mx ? -100 : md ? -180 : 5,
       dy: mx ? -95 : md ? -118 : -25,
     },
-    soli: {
+    {
       rot: -5,
       s: responsiveScale,
       dx: mx ? -108 : md ? -188 : -10,
       dy: mx ? -98 : md ? -120 : -40,
     },
-  }
+  ]
 
-  /** Per-card hover peek classes (carried over from the original four-card layout). */
-  const HERO_PEEK: Record<string, string> = {
-    saazghar: "reveal-false:group-hover/hero-stack:-translate-y-3 reveal-false:group-hover/hero-stack:-translate-x-6 reveal-false:group-hover/hero-stack:-rotate-4",
-    hamrahihub: "reveal-false:group-hover/hero-stack:-translate-y-4 reveal-false:group-hover/hero-stack:translate-x-6 reveal-false:group-hover/hero-stack:rotate-5",
-    petlove: "reveal-false:group-hover/hero-stack:translate-y-4 reveal-false:group-hover/hero-stack:-translate-x-7 reveal-false:group-hover/hero-stack:-rotate-6",
-    soli: "reveal-false:group-hover/hero-stack:translate-y-5 reveal-false:group-hover/hero-stack:translate-x-7 reveal-false:group-hover/hero-stack:rotate-6",
-  }
+  /** Per-position hover peek classes (carried over from the original four-card layout). */
+  const HERO_PEEK: string[] = [
+    "reveal-false:group-hover/hero-stack:-translate-y-3 reveal-false:group-hover/hero-stack:-translate-x-6 reveal-false:group-hover/hero-stack:-rotate-4",
+    "reveal-false:group-hover/hero-stack:-translate-y-4 reveal-false:group-hover/hero-stack:translate-x-6 reveal-false:group-hover/hero-stack:rotate-5",
+    "reveal-false:group-hover/hero-stack:translate-y-4 reveal-false:group-hover/hero-stack:-translate-x-7 reveal-false:group-hover/hero-stack:-rotate-6",
+    "reveal-false:group-hover/hero-stack:translate-y-5 reveal-false:group-hover/hero-stack:translate-x-7 reveal-false:group-hover/hero-stack:rotate-6",
+  ]
 
   const offsets = Object.fromEntries(
-    ids.map((id) => {
+    ids.map((id, index) => {
       const base = rawOffsets[id]
-      const t = OFFSET_TUNING[id]
+      const t = OFFSET_TUNING[index]
       return [
         id,
         {
@@ -102,7 +102,7 @@ export function ProjectsGrid({ className }: { className?: string }) {
   return (
     <section id="projects-grid" className={clsx("group/hero-stack relative scroll-mt-36", className)} ref={ref}>
       <div className="relative z-4 mx-auto grid w-full grid-cols-1 grid-rows-1 gap-3 sm:gap-4 max-md:min-h-[min(80dvh,38rem)] md:min-h-0 md:grid-cols-2 md:grid-rows-2">
-        {FEATURED_PROJECTS.map((project) => (
+        {FEATURED_PROJECTS.map((project, index) => (
           <AnimatedCard
             key={project.slug}
             src={project.preview}
@@ -113,7 +113,7 @@ export function ProjectsGrid({ className }: { className?: string }) {
             type={project.cardType}
             progress={progress}
             dataText="View Project"
-            heroPeekClass={HERO_PEEK[project.slug] ?? ""}
+            heroPeekClass={HERO_PEEK[index] ?? ""}
           />
         ))}
       </div>

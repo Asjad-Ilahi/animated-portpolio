@@ -11,24 +11,30 @@ import { BlackButtonLink } from "./ui/BlackButtonLink"
 const faqs = [
   {
     id: "01",
+    question: "Can you build, fine-tune, or train an AI model for our product?",
+    answer:
+      "Yes. I have trained a 54.5M-parameter language model from scratch (DanAi) and fine-tuned Qwen3.5-0.8B with Unsloth on ~120K structured examples for Saazghar. Depending on the problem, that can mean fine-tuning an open model on your data, wiring an LLM into your product with structured tool calls, or a small model that runs on-device. Evaluation comes first, so we know it actually works before it ships.",
+  },
+  {
+    id: "02",
     question: "How long does a typical build or milestone take?",
     answer:
       "Timelines depend on scope and integrations. A focused MVP slice is often a few weeks; larger marketplace or multi-platform work can run longer. After a discovery call I share a phased plan with milestones, owners, and dates so expectations stay concrete.",
   },
   {
-    id: "02",
+    id: "03",
     question: "Can you work with our existing codebase, Figma files, and APIs?",
     answer:
       "Yes. I regularly plug into current repos—Next.js, Laravel, Flutter, or Firebase backends—and extend Figma-based UI kits or component libraries. I document assumptions, add tests where they add value, and keep diffs reviewable for your team.",
   },
   {
-    id: "03",
-    question: "What stacks do you prefer for web and mobile delivery?",
+    id: "04",
+    question: "What stacks do you prefer for AI, web, and mobile?",
     answer:
-      "For web I lean on Next.js and Node when we need SEO, dashboards, or server actions; Laravel when the product already lives there. For mobile I ship Flutter with Firebase or Supabase, and wire third-party logistics or payment APIs when the product needs them.",
+      "For AI I work in Python with PyTorch, Hugging Face, and Unsloth, and ship models through GGUF, Ollama, or an API. For web I lean on Next.js and Node when we need SEO, dashboards, or server actions; Laravel when the product already lives there. For mobile I ship Flutter with Firebase or Supabase, and wire third-party logistics or payment APIs when the product needs them.",
   },
   {
-    id: "04",
+    id: "05",
     question: "Do you support releases after launch?",
     answer:
       "Absolutely. I offer post-launch hardening, monitoring hooks, performance passes, and small feature increments—either on a light retainer or scoped tickets—so you are not stuck once users hit production traffic.",

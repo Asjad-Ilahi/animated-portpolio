@@ -33,15 +33,8 @@ const toStatic = (p: Project): StaticProject => ({
   isExternal: false,
 })
 
-/**
- * Ordering rule (per product brief): Soli first, Saazghar second, then the remaining
- * projects in their data-file order.
- */
-const TOP_SLUGS = ["soli", "saazghar"] as const
-const top = TOP_SLUGS.map((slug) => PROJECTS.find((p) => p.slug === slug)!).filter(Boolean)
-const rest = PROJECTS.filter((p) => !TOP_SLUGS.includes(p.slug as (typeof TOP_SLUGS)[number]))
-
-export const STATIC_PROJECTS: StaticProject[] = [...top, ...rest].map(toStatic)
+/** Ordering follows the `PROJECTS` array in `app/data/projects.ts`. */
+export const STATIC_PROJECTS: StaticProject[] = PROJECTS.map(toStatic)
 
 export const ProjectsStatic: React.FC = () => {
   return (

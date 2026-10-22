@@ -13,7 +13,15 @@ import { SITE_SLUGS } from "@/config/siteConfig"
 import { MoreProjectsSection } from "./MoreProjectsSection"
 import { FaqCtaSection } from "../FaqCtaSection"
 import { FaGithub, FaLinkedinIn } from "react-icons/fa"
-import { HiOutlineGlobeAlt, HiOutlinePaintBrush, HiOutlineSparkles, HiOutlineCommandLine } from "react-icons/hi2"
+import {
+  HiOutlineCheck,
+  HiOutlineCpuChip,
+  HiOutlineGlobeAlt,
+  HiOutlinePaintBrush,
+  HiOutlineSparkles,
+  HiOutlineCommandLine,
+  HiOutlineWallet,
+} from "react-icons/hi2"
 import {
   SiAppstore,
   SiDart,
@@ -22,6 +30,7 @@ import {
   SiFigma,
   SiFlutter,
   SiGoogleplay,
+  SiHuggingface,
   SiLaravel,
   SiMongodb,
   SiNextdotjs,
@@ -29,8 +38,11 @@ import {
   SiOllama,
   SiPhp,
   SiPostgresql,
+  SiPython,
+  SiPytorch,
   SiReact,
   SiStripe,
+  SiSupabase,
   SiThreedotjs,
   SiTypescript,
 } from "react-icons/si"
@@ -59,7 +71,15 @@ function TechTagIcon({ tag }: { tag: string }) {
     if (t.includes("mongo")) return <SiMongodb className={tagIconClass} aria-hidden />
     if (t.includes("postgres")) return <SiPostgresql className={tagIconClass} aria-hidden />
     if (t.includes("ollama")) return <SiOllama className={tagIconClass} aria-hidden />
-    if (t === "ai" || t.includes("machine learning")) return <HiOutlineSparkles className={tagIconClass} aria-hidden />
+    if (t.includes("pytorch")) return <SiPytorch className={tagIconClass} aria-hidden />
+    if (t.includes("python")) return <SiPython className={tagIconClass} aria-hidden />
+    if (t.includes("hugging") || t.includes("transformers")) return <SiHuggingface className={tagIconClass} aria-hidden />
+    if (t.includes("supabase")) return <SiSupabase className={tagIconClass} aria-hidden />
+    if (t.includes("gguf") || t.includes("llama.cpp")) return <HiOutlineCpuChip className={tagIconClass} aria-hidden />
+    if (t.includes("privy") || t.includes("wallet") || t.includes("usdc")) return <HiOutlineWallet className={tagIconClass} aria-hidden />
+    if (t.includes("base sepolia")) return <SiEthereum className={tagIconClass} aria-hidden />
+    if (t === "ai" || t.includes("machine learning") || ["unsloth", "qwen", "hunyuan3d", "tokenization"].includes(t))
+      return <HiOutlineSparkles className={tagIconClass} aria-hidden />
     if (t.includes("ui") || t.includes("ux") || t.includes("design")) return <HiOutlinePaintBrush className={tagIconClass} aria-hidden />
     return <HiOutlineCommandLine className={tagIconClass} aria-hidden />
   })()
@@ -112,7 +132,7 @@ function ExternalHeroButton({
 }
 
 function ProjectHeroLinks({ project }: { project: Project }) {
-  const { title, github, site, linkedInPost } = project
+  const { title, github, site, huggingFace, linkedInPost } = project
   const items: {
     key: string
     href: string
@@ -121,6 +141,15 @@ function ProjectHeroLinks({ project }: { project: Project }) {
     aria: string
   }[] = []
 
+  if (huggingFace) {
+    items.push({
+      key: "huggingface",
+      href: huggingFace,
+      label: "Hugging Face",
+      icon: <SiHuggingface className="text-[1.2rem] text-white" aria-hidden />,
+      aria: `View ${title} on Hugging Face`,
+    })
+  }
   if (github) {
     items.push({
       key: "github",
@@ -199,8 +228,9 @@ function ProjectHeroLinks({ project }: { project: Project }) {
 }
 
 export const UniversalProjectDisplay: React.FC<{ project: Project }> = ({ project }) => {
-  const { title, tagline, year, description, tags, preview, gallery } = project
+  const { title, tagline, year, period, description, stats, highlights, tags, preview, gallery } = project
   const galleryShots = (gallery ?? []).filter((img) => img !== preview)
+  const hasLinks = Boolean(project.github || project.site || project.huggingFace || project.linkedInPost)
 
   return (
     <main className="min-w-0 overflow-x-clip">
@@ -222,8 +252,7 @@ export const UniversalProjectDisplay: React.FC<{ project: Project }> = ({ projec
           <div
             className={clsx(
               "grid grid-cols-1 gap-10",
-              (project.github || project.site || project.linkedInPost) &&
-                "lg:grid-cols-[minmax(0,1fr)_minmax(12.5rem,22rem)] lg:items-start lg:gap-12 xl:gap-16",
+              hasLinks && "lg:grid-cols-[minmax(0,1fr)_minmax(12.5rem,22rem)] lg:items-start lg:gap-12 xl:gap-16",
             )}
           >
             <div className="flex min-w-0 flex-col gap-6">
@@ -232,8 +261,8 @@ export const UniversalProjectDisplay: React.FC<{ project: Project }> = ({ projec
                 <span className="mt-[0.35em] block text-balance">{title}</span>
               </AnimatedH2>
 
-              {year ? (
-                <p className="-mt-2 text-sm font-medium tracking-wide text-slate-400">{year}</p>
+              {period || year ? (
+                <p className="-mt-2 font-mono text-xs font-medium tracking-wide text-slate-400 uppercase md:text-[13px]">{period ?? year}</p>
               ) : null}
 
               {tags.length > 0 && (
@@ -280,6 +309,45 @@ export const UniversalProjectDisplay: React.FC<{ project: Project }> = ({ projec
             </Text>
           </div>
 
+          {stats && stats.length > 0 && (
+            <ul className={clsx("grid grid-cols-1 gap-3 xs:grid-cols-2 md:gap-4", stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3")}>
+              {stats.map((stat, i) => (
+                <AnimatedElement
+                  key={stat.label}
+                  element="li"
+                  delay={0.05 + i * 0.08}
+                  fadeDirection="bottom"
+                  offsetPx={20}
+                  className="flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.03)] md:p-6"
+                >
+                  <span className="text-3xl leading-none font-medium tracking-tighter text-slate-900 tabular-nums md:text-4xl">{stat.value}</span>
+                  <span className="text-sm leading-snug text-slate-500">{stat.label}</span>
+                </AnimatedElement>
+              ))}
+            </ul>
+          )}
+
+          {highlights && highlights.length > 0 && (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_minmax(0,560px)] md:gap-14">
+              <div className="flex flex-col gap-3">
+                <Text size="sm" className="font-medium tracking-wider text-slate-500 uppercase">
+                  Highlights
+                </Text>
+                <h3 className="text-2xl leading-tight font-normal tracking-tight text-slate-900 md:text-3xl md:leading-snug">What stands out</h3>
+              </div>
+              <ul className="flex flex-col divide-y divide-gray-200 border-y border-gray-200">
+                {highlights.map((item) => (
+                  <li key={item} className="flex gap-3.5 py-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                    <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white" aria-hidden>
+                      <HiOutlineCheck className="h-3 w-3" />
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {galleryShots.length > 0 && (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
               {galleryShots.map((img, i) => (
@@ -289,10 +357,19 @@ export const UniversalProjectDisplay: React.FC<{ project: Project }> = ({ projec
                   delay={0.1 + i * 0.1}
                   fadeDirection="bottom"
                   offsetPx={32}
-                  className="relative overflow-hidden rounded-2xl border border-gray-200 bg-slate-50 md:rounded-3xl"
+                  className={clsx(
+                    "relative overflow-hidden rounded-2xl border border-gray-200 bg-slate-50 md:rounded-3xl",
+                    galleryShots.length === 1 && "md:col-span-2",
+                  )}
                 >
-                  <div className="relative aspect-[4/3] w-full">
-                    <Image src={img} alt={`${title} – gallery ${i + 1}`} fill className="object-cover" sizes="(min-width: 768px) 50vw, 100vw" />
+                  <div className={clsx("relative w-full", galleryShots.length === 1 ? "aspect-[16/9]" : "aspect-[4/3]")}>
+                    <Image
+                      src={img}
+                      alt={`${title} – gallery ${i + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes={galleryShots.length === 1 ? "(min-width: 1024px) 1200px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                    />
                   </div>
                 </AnimatedElement>
               ))}

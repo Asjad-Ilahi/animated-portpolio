@@ -1,8 +1,11 @@
+import Link from "next/link"
 import { HeroScrollClick } from "./HeroScrollClick"
 import { ActivityDot } from "./ui/ActivityDot"
 import { AnimatedElement } from "./ui/AnimatedElement"
 import { SECTION_HEADING_CLASS } from "./ui/AnimatedH2"
 import { CallToActionButton } from "./ui/CallToActionButton"
+import { Icon } from "./Icon"
+import { SITE_SLUGS } from "@/config/siteConfig"
 import clsx from "clsx"
 
 export const HeroV2 = () => {
@@ -16,16 +19,20 @@ export const HeroV2 = () => {
             className="z-2 inline-flex items-center gap-2 self-start rounded-full border border-gray-100 bg-white px-3 py-2 text-xs font-medium shadow-sm"
           >
             <ActivityDot />
-            Islamabad, PK
+            AI Engineer at Huawei
+            <span className="text-slate-300" aria-hidden>
+              /
+            </span>
+            <span className="text-slate-500">Islamabad, PK</span>
           </AnimatedElement>
 
           <h1 className={clsx(SECTION_HEADING_CLASS, "relative z-5 text-slate-900 max-sm:!text-[clamp(1.85rem,7vw,2.35rem)] max-sm:!leading-[1.08]")}>
             <AnimatedElement element="span" offsetPx={20} fadeDirection="left" className="inline-block">
-            Software Product 
+              AI Engineer &amp;
             </AnimatedElement>
             <br />
             <AnimatedElement element="span" delay={0.25} offsetPx={20} fadeDirection="left" className="inline-block text-balance text-slate-500">
-            Developer
+              Product Developer
             </AnimatedElement>
           </h1>
 
@@ -34,15 +41,24 @@ export const HeroV2 = () => {
             delay={0.6}
             className="max-w-[19rem] text-[13px] leading-relaxed tracking-tight text-slate-600 sm:max-w-sm sm:text-xs md:max-w-md md:text-[13px] md:leading-snug"
           >
-            <strong className="font-semibold text-slate-800">Motivated software engineer</strong> shipping{" "}
-            <strong className="font-semibold text-slate-800">web and mobile products</strong>—turning fuzzy problems into{" "}
-            <strong className="font-semibold text-slate-800">calm, dependable releases</strong>.
-            <br className="hidden sm:block" />
-            I care about{" "}
-            <strong className="font-semibold text-slate-800">momentum, clear craft, and solutions people trust in production</strong>.
+            I <strong className="font-semibold text-slate-800">train language models from scratch</strong> and{" "}
+            <strong className="font-semibold text-slate-800">ship the products around them</strong>—from DanAi, a 55M-parameter reasoning model on
+            Hugging Face, to an AI pre-construction platform and production web and mobile apps.
+            <br className="hidden sm:block" /> Currently an <strong className="font-semibold text-slate-800">AI Engineer Intern (MTO) at Huawei</strong>.
           </AnimatedElement>
 
-          <CallToActionButton />
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <CallToActionButton />
+            <AnimatedElement element="span" delay={0.85}>
+              <Link
+                href={SITE_SLUGS.projectLinks.danai}
+                className="group inline-flex items-center gap-1.5 text-sm font-medium tracking-tight text-slate-700 transition-colors hover:text-slate-950"
+              >
+                <span className="underline-hover">Explore DanAi</span>
+                <Icon name="arrow-right" height={14} width={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+            </AnimatedElement>
+          </div>
         </div>
         {/* Don't remove this span */}
         <span data-stack-target-id className="mt-18 ml-[2%] h-1 w-2 shrink-0 xs:ml-[6%] xs:mt-20 [flex:1_0_0px] sm:mt-11 md:ml-[4%] xl:ml-[16%]" />

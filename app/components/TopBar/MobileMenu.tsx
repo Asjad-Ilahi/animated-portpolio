@@ -15,6 +15,7 @@ import {
   FiArrowUpRight,
   FiBriefcase,
   FiGrid,
+  FiLayers,
   FiUser,
   FiGithub,
   FiLinkedin,
@@ -97,8 +98,9 @@ const socialVariants = {
 
 /** Match icon to each nav item by name. Keeps the map local so adding/removing nav links is easy. */
 const navIconMap: Record<string, IconType> = {
-  Projects: FiBriefcase,
-  Services: FiGrid,
+  Projects: FiGrid,
+  Experience: FiBriefcase,
+  Services: FiLayers,
   About: FiUser,
 }
 

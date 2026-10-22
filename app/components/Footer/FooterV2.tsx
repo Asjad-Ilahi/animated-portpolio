@@ -4,7 +4,7 @@ import { Socials } from "../Socials"
 import { SITE_FOOTER_NAV, SITE_NAP } from "@/config/siteConfig"
 import { H2 } from "@/app/ui/Elements"
 
-const words: [string, string, string, string] = ["build", "create", "design", "make"]
+const words: [string, string, string, string] = ["build", "ship", "design", "create"]
 
 export const socialLinks = [
   {
@@ -12,12 +12,16 @@ export const socialLinks = [
     icon: "linkedin",
   },
   {
-    href: SITE_NAP.profiles.instagram,
-    icon: "instagram",
-  },
-  {
     href: SITE_NAP.profiles.github,
     icon: "github",
+  },
+  {
+    href: SITE_NAP.profiles.huggingFace,
+    icon: "huggingface",
+  },
+  {
+    href: SITE_NAP.profiles.instagram,
+    icon: "instagram",
   },
   {
     href: SITE_NAP.profiles.x,
@@ -31,7 +35,7 @@ export const FooterV2: React.FC = () => {
       <div className="xs:pb-32 mx-auto flex w-full max-w-6xl flex-col gap-12 px-5.5 pt-12 pb-24 text-white sm:pb-40 md:gap-16 md:px-11 md:pt-16 lg:pb-54">
         <div className="flex flex-col gap-8 md:gap-12">
           <H2 className="text-5xl leading-12 text-white md:text-6xl md:leading-14">
-            Lets&nbsp;
+            Let&apos;s&nbsp;
             <TextSlider words={words} height={50} mobileHeight={41} />
             <br />
             <span className="text-gray-500">incredible work together.</span>

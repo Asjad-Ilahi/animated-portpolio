@@ -22,11 +22,12 @@ const projectsData: ProjectItem[] = PROJECTS.map((p) => ({
 }))
 
 const SITE = DOMAIN_URL.replace(/\/$/, "")
+const PERSON_ID = `${SITE}/#asjad-ilahi`
 
 export function buildProjectGraphMinimal(project: Project, type = "CreativeWork" as const): Graph {
   const id = `${SITE}${SITE_SLUGS.projects}/${project.slug}`
   const image = typeof project.preview === "string" ? project.preview : project.preview?.src
-  const sameAs = [project.site, project.github, project.linkedInPost].filter(Boolean) as string[]
+  const sameAs = [project.site, project.huggingFace, project.github, project.linkedInPost].filter(Boolean) as string[]
 
   return {
     "@context": "https://schema.org",
@@ -41,8 +42,8 @@ export function buildProjectGraphMinimal(project: Project, type = "CreativeWork"
         ...(sameAs.length ? { sameAs } : {}),
         mainEntityOfPage: id,
         isPartOf: { "@id": `${SITE}${SITE_SLUGS.projects}#page` },
-        author: { "@id": `${SITE}/#asjad-ilahi` },
-        publisher: { "@id": `${SITE}#org` },
+        author: { "@id": PERSON_ID },
+        publisher: { "@id": PERSON_ID },
         inLanguage: "en",
       },
       {
@@ -126,30 +127,18 @@ export const siteGraph = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "@id": `${SITE}#org`,
-      name: "DH Solutions",
-      url: SITE,
-      logo: { "@id": `${SITE}#logo` },
-      sameAs: Object.values(SITE_NAP.profiles),
-      contactPoint: [
-        {
-          "@type": "ContactPoint",
-          contactType: "customer support",
-          email: SITE_NAP.email,
-          areaServed: "PK",
-          availableLanguage: ["en", "ur"],
-        },
-      ],
-    },
-    {
       "@type": "Person",
-      "@id": `${SITE}/#asjad-ilahi`,
+      "@id": PERSON_ID,
       name: "Asjad Ilahi",
       url: SITE,
-      jobTitle: "Software Product Developer",
+      jobTitle: "AI Engineer",
+      description: SITE_CONFIG.description,
       image: { "@id": `${SITE}#headshot` },
-      worksFor: { "@id": `${SITE}#org` },
+      worksFor: { "@type": "Organization", name: "Huawei Technologies" },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "COMSATS University Islamabad" },
+      address: { "@type": "PostalAddress", addressLocality: SITE_NAP.city, addressCountry: "PK" },
+      knowsAbout: ["Machine Learning", "Large Language Models", "PyTorch", "Hugging Face", "Fine-Tuning", "Next.js", "Flutter"],
+      knowsLanguage: ["en", "ur", "ps"],
       sameAs: Object.values(SITE_NAP.profiles),
       email: SITE_NAP.email,
     },
@@ -158,10 +147,9 @@ export const siteGraph = {
       "@id": `${SITE}#website`,
       url: SITE,
       name: SITE_CONFIG.title,
-      publisher: { "@id": `${SITE}#org` },
+      publisher: { "@id": PERSON_ID },
       inLanguage: "en",
     },
     { "@type": "ImageObject", "@id": `${SITE}#headshot`, url: `${SITE}/logo.png` },
-    { "@type": "ImageObject", "@id": `${SITE}#logo`, url: `${SITE}/logo.png` },
   ],
 }

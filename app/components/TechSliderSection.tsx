@@ -10,10 +10,15 @@ import {
   SiFigma,
   SiFirebase,
   SiFlutter,
+  SiHuggingface,
   SiJavascript,
   SiLaravel,
+  SiMongodb,
   SiNextdotjs,
+  SiNodedotjs,
+  SiOllama,
   SiPython,
+  SiPytorch,
   SiReact,
   SiSupabase,
   SiTailwindcss,
@@ -27,24 +32,30 @@ type TechItem = {
   Icon: React.ComponentType<{ className?: string }>
 }
 
+/** AI / ML first, then product engineering. */
 const techStack: TechItem[] = [
+  { name: "Python", Icon: SiPython },
+  { name: "PyTorch", Icon: SiPytorch },
+  { name: "Hugging Face", Icon: SiHuggingface },
+  { name: "Ollama", Icon: SiOllama },
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "React", Icon: SiReact },
+  { name: "TypeScript", Icon: SiTypescript },
+  { name: "Node.js", Icon: SiNodedotjs },
+  { name: "Three.js", Icon: SiThreedotjs },
   { name: "Flutter", Icon: SiFlutter },
   { name: "Dart", Icon: SiDart },
-  { name: "Next.js", Icon: SiNextdotjs },
-  { name: "Tailwind", Icon: SiTailwindcss },
-  { name: "Three.js", Icon: SiThreedotjs },
-  { name: "React", Icon: SiReact },
   { name: "React Native", Icon: TbBrandReactNative },
   { name: "iOS", Icon: FaApple },
   { name: "Android", Icon: SiAndroid },
   { name: "Supabase", Icon: SiSupabase },
   { name: "Firebase", Icon: SiFirebase },
+  { name: "MongoDB", Icon: SiMongodb },
+  { name: "Laravel", Icon: SiLaravel },
+  { name: "Tailwind", Icon: SiTailwindcss },
   { name: "Figma", Icon: SiFigma },
-  { name: "Python", Icon: SiPython },
   { name: "Java", Icon: FaJava },
   { name: "JavaScript", Icon: SiJavascript },
-  { name: "TypeScript", Icon: SiTypescript },
-  { name: "Laravel", Icon: SiLaravel },
 ]
 
 const clientAvatarSrc = [
@@ -77,7 +88,7 @@ export const TechSliderSection: React.FC = () => {
           </div>
           <div className="flex flex-col leading-tight">
             <div className="flex items-center gap-1 text-black">
-              {[0, 1, 2, 3].map((star) => (
+              {[0, 1, 2, 3, 4].map((star) => (
                 <FaStar key={star} className="h-3.5 w-3.5" />
               ))}
             </div>

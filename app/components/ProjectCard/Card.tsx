@@ -32,7 +32,7 @@ export const Card = ({
           <span className="absolute top-2 left-2 w-fit rounded-full border border-gray-700 bg-black px-2.5 py-1 text-[10px] shadow-md sm:px-3 sm:text-xs md:px-4 md:py-2 md:text-xs">
             {type}
           </span>
-          <span className="absolute bottom-3 left-3 z-5 w-fit text-sm font-medium sm:bottom-4 sm:left-4 sm:text-base md:text-lg">{alt.split(" ")[0]}</span>
+          <span className="absolute bottom-3 left-3 z-5 w-fit text-sm font-medium sm:bottom-4 sm:left-4 sm:text-base md:text-lg">{alt.replace(/ Preview$/, "")}</span>
           <span className="absolute right-3 bottom-3 z-5 flex w-fit items-center gap-1 text-[10px] sm:right-4 sm:bottom-4 sm:text-xs">
             {/* SVG inlined for performance */}
             <svg className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" height="16" width="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,14 @@ export const Card = ({
             {text}
           </span>
         </span>
-        <Image className="h-full w-full bg-gray-200" src={src} alt={alt} priority decoding="async" />
+        <Image
+          className="h-full w-full bg-gray-200 object-cover"
+          src={src}
+          alt={alt}
+          priority
+          decoding="async"
+          sizes="(min-width: 768px) 640px, 100vw"
+        />
       </div>
     </div>
   )

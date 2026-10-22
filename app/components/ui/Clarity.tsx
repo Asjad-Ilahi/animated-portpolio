@@ -1,10 +1,11 @@
 // app/components/Clarity.tsx
 import Script from "next/script"
 
-const CLARITY_ID = "t4bi2igt7h"
+/** Microsoft Clarity project ID — set `NEXT_PUBLIC_CLARITY_ID` in Vercel to enable session analytics. */
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID
 
 export function Clarity() {
-  if (process.env.NEXT_PUBLIC_DISABLE_CLARITY === "true") return null
+  if (!CLARITY_ID || process.env.NEXT_PUBLIC_DISABLE_CLARITY === "true") return null
 
   return (
     <Script

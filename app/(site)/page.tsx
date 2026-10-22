@@ -1,5 +1,6 @@
 import { HeroV2 } from "../components/HeroV2"
 import { ProjectsSection } from "../components/ProjectsSection"
+import { ExperienceSection } from "../components/ExperienceSection"
 import { AboutSectionV2 } from "../components/AboutSectionV2"
 import { ServicesSectionCardSwap } from "../components/ServicesSectionCardSwap"
 import { PostServicesShowcase } from "../components/PostServicesShowcase"
@@ -11,8 +12,7 @@ import { homeGraph } from "@/config/schemas"
 
 export const metadata: Metadata = {
   title: SITE_CONFIG.title,
-  description:
-    "Portfolio of Asjad Ilahi—software product developer in Islamabad. Production web and mobile with Next.js, Flutter, MERN, and Laravel; case studies, stack, and booking.",
+  description: SITE_CONFIG.description,
   authors: [{ name: "Asjad Ilahi" }],
   creator: "Asjad Ilahi",
   alternates: {
@@ -24,7 +24,7 @@ const PortfolioPage: React.FC = () => {
   return (
     <main className="min-w-0 overflow-x-clip">
       <script
-        id="id-site-schema"
+        id="id-home-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(homeGraph),
@@ -33,6 +33,7 @@ const PortfolioPage: React.FC = () => {
       <HeroV2 />
       <TechSliderSection />
       <ProjectsSection />
+      <ExperienceSection />
       <AboutSectionV2 />
       <ServicesSectionCardSwap />
       <PostServicesShowcase />

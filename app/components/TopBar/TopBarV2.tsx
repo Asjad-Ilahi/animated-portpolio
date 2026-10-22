@@ -9,7 +9,7 @@ const navItems = SITE_NAV_LINKS
 export const TopBarV2: React.FC = () => {
   return (
     <MobileMenuProvider>
-      <nav className="font-switzer isolate fixed top-1 left-1/2 z-[200] flex w-[calc(100vw-1.25rem)] max-w-xl -translate-x-1/2 justify-center text-base sm:top-2.5 sm:w-fit sm:max-w-none md:top-5 md:text-sm">
+      <nav className="font-sans isolate fixed top-1 left-1/2 z-[200] flex w-[calc(100vw-1.25rem)] max-w-xl -translate-x-1/2 justify-center text-base sm:top-2.5 sm:w-fit sm:max-w-none md:top-5 md:text-sm">
         <div className="relative z-10 flex w-full flex-col items-stretch sm:w-auto">
           <MobileNavBackdrop />
           {/* overflow-hidden only wraps the pill row so the mobile drawer is not clipped */}
@@ -22,7 +22,7 @@ export const TopBarV2: React.FC = () => {
                   <span className="truncate">Asjad Ilahi</span>
                 </Link>
 
-                <ul className="hidden items-center gap-6 font-medium text-[#18181b] transition-all duration-250 ease-out md:flex md:scrolled-up:max-w-96 md:scrolled-up:opacity-100 md:scrolled-down:pointer-events-none md:scrolled-down:max-w-0 md:scrolled-down:opacity-0">
+                <ul className="hidden items-center gap-6 font-medium text-[#18181b] transition-all duration-250 ease-out md:flex md:scrolled-up:max-w-[32rem] md:scrolled-up:opacity-100 md:scrolled-down:pointer-events-none md:scrolled-down:max-w-0 md:scrolled-down:opacity-0">
                   {navItems.map((item) => (
                     <li key={item.name} className="flex">
                       <Link prefetch={false} href={item.href} className="bubble-hover px-1 py-1">

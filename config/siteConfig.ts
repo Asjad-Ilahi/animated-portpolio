@@ -1,26 +1,31 @@
-export const DOMAIN_URL = "https://www.austinserb.com"
+export const DOMAIN_URL = "https://animated-portpolio.vercel.app"
 
 /** Cal.com booking — single URL used for hero CTA, FAQ, and anywhere else we link to Cal. */
 export const CAL_BOOKING_URL = "https://cal.com/asjad-ilahi" as const
 
 export const SITE_CONFIG = {
-  title: "Asjad Ilahi — Software Product Developer",
+  title: "Asjad Ilahi — AI Engineer & Software Product Developer",
   description:
-    "Portfolio of Asjad Ilahi, Islamabad-based software product developer. End-to-end web and mobile with Next.js, Flutter, MERN, and Laravel—plus UI/UX in Figma.",
+    "Asjad Ilahi is an AI Engineer (Huawei MTO) and software product developer in Islamabad. Creator of DanAi, a 55M-parameter language model trained from scratch, and builder of production web, mobile, and AI products.",
   url: DOMAIN_URL ?? "http://localhost:3000",
   siteName: "Asjad Ilahi",
   keywords: [
     "Asjad Ilahi",
+    "AI Engineer",
     "Software Product Developer",
+    "Huawei MTO",
+    "DanAi",
+    "Small Language Model",
+    "PyTorch",
+    "Hugging Face",
+    "LLM Fine-Tuning",
+    "Unsloth",
     "Next.js",
     "Flutter",
-    "MERN",
-    "Laravel",
     "Islamabad",
     "COMSATS",
-    "DH Solutions",
   ],
-  ogImage: "/assets/bg-home-poster-optimized.webp",
+  ogImage: "/og.jpg",
   logo: "/logo.png",
 } as const
 
@@ -28,12 +33,12 @@ export const SITE_NAP = {
   name: "Asjad Ilahi",
   googleBusinessType: "LocalBusiness" as const,
   contact: "Asjad Ilahi",
-  contactTitle: "Software Product Developer",
+  contactTitle: "AI Engineer & Software Product Developer",
   email: "asjadilahi01@gmail.com",
   phone: "",
   formattedPhone: "",
   addressLink: "https://www.google.com/maps/search/?api=1&query=Islamabad+Pakistan",
-  street: "COMSATS University Islamabad",
+  street: "",
   city: "Islamabad",
   state: "PK",
   zipCode: "",
@@ -42,12 +47,13 @@ export const SITE_NAP = {
   profiles: {
     linkedIn: "https://www.linkedin.com/in/asjad-ilahi/",
     github: "https://github.com/asjad-ilahi",
+    huggingFace: "https://huggingface.co/asjadilahi",
     x: "https://x.com/asjad13851",
     instagram: "https://www.instagram.com/asjad__ilahi/",
   } as const,
   logo: "/logo.png",
   favicon: "/logo.png",
-  images: [`${DOMAIN_URL}/logo.png`, `${DOMAIN_URL}/assets/bg-home-poster-optimized.webp`],
+  images: [`${DOMAIN_URL}/logo.png`, `${DOMAIN_URL}/og.jpg`],
 } as const
 
 export const SITE_SLUGS = {
@@ -55,14 +61,17 @@ export const SITE_SLUGS = {
   projects: "/projects",
   contact: "/#contact",
   about: "/#about-asjad-ilahi",
+  experience: "/#experience",
   projectLinks: {
+    danai: "/projects/danai",
     saazghar: "/projects/saazghar",
-    axora: "/projects/axora",
-    petlove: "/projects/petlove",
-    wowcouple: "/projects/wowcouple",
-    soli: "/projects/soli",
-    edubank: "/projects/edubank",
     hamrahihub: "/projects/hamrahihub",
+    petlove: "/projects/petlove",
+    taabaawi: "/projects/taabaawi",
+    soli: "/projects/soli",
+    axora: "/projects/axora",
+    wowcouple: "/projects/wowcouple",
+    edubank: "/projects/edubank",
     luckycamp: "/projects/luckycamp",
   },
 } as const
@@ -73,6 +82,7 @@ export const projectSlugPath = (slug: string) => `/projects/${slug}` as const
 /** Navbar + footer: in-page sections from `app/(site)/page.tsx` (hash routes on home). */
 export const SITE_NAV_LINKS = [
   { name: "Projects", href: "/#projects-grid" },
+  { name: "Experience", href: SITE_SLUGS.experience },
   { name: "Services", href: "/#services" },
   { name: "About", href: SITE_SLUGS.about },
 ] as const
@@ -82,13 +92,6 @@ export const SITE_FOOTER_NAV = [
   ...SITE_NAV_LINKS,
   { name: "Contact", href: SITE_SLUGS.contact },
 ] as const
-
-export const externalLinks = {
-  vetsChoice: "https://vetschoiceinsurance.com/",
-  zeroIconSprite: "https://github.com/react-zero-ui/icon-sprite",
-  zeroCore: "https://github.com/react-zero-ui/core",
-  entitled: "https://be-entitled.com/",
-} as const
 
 const flattenSlugs = (obj: Record<string, string | Record<string, string>>): string[] => {
   return Object.values(obj).flatMap((value) => (typeof value === "string" ? [value] : flattenSlugs(value)))

@@ -7,6 +7,7 @@ import { useIsMobile } from "../hooks/useMediaQuery"
 import {
   HiOutlineChatBubbleLeftRight,
   HiOutlineCloud,
+  HiOutlineCpuChip,
   HiOutlineDevicePhoneMobile,
   HiOutlineGlobeAlt,
   HiOutlinePaintBrush,
@@ -25,6 +26,13 @@ const services: {
   alt: string
   Icon: ServiceIcon
 }[] = [
+  {
+    title: "AI & ML Engineering",
+    subtitle: "Custom models, fine-tuning, and LLM features—trained, evaluated, and shipped to production.",
+    image: "/services/ai.svg",
+    alt: "AI and machine learning illustration",
+    Icon: HiOutlineCpuChip,
+  },
   {
     title: "App Development",
     subtitle: "Mobile experiences from discovery through store release.",
