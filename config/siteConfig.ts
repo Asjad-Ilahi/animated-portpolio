@@ -1,4 +1,4 @@
-export const DOMAIN_URL = "https://animated-portpolio.vercel.app"
+export const DOMAIN_URL = "https://asjadilahi.vercel.app"
 
 /** Cal.com booking — single URL used for hero CTA, FAQ, and anywhere else we link to Cal. */
 export const CAL_BOOKING_URL = "https://cal.com/asjad-ilahi" as const

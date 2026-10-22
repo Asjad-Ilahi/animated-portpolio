@@ -2,7 +2,7 @@
 
 Personal portfolio of **Asjad Ilahi**, AI Engineer (Huawei MTO) and software product developer.
 
-Live: [animated-portpolio.vercel.app](https://animated-portpolio.vercel.app)
+Live: [asjadilahi.vercel.app](https://asjadilahi.vercel.app)
 
 ## Stack
 
